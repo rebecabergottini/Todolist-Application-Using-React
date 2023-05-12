@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //create your first component
 const Home = () => {
@@ -21,6 +21,57 @@ const Home = () => {
     newList.splice(index, 1);
     setToDoList(newList);
   }
+
+
+  function createUser() {
+    fetch('https://assets.breatheco.de/apis/fake/todos/user/rebecabergo', {
+      method: "PUT",
+      body: JSON.stringify([]),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch(err => console.log(err));
+  }
+
+  function updateToDoList() {
+      fetch('https://assets.breatheco.de/apis/fake/todos/user/rebecabergo', {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify([])
+      })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch(err => console.log(err));
+    }
+
+  function deleteToDoList() {
+    fetch('https://assets.breatheco.de/apis/fake/todos/user/rebecabergo', {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch(err => console.log(err));
+  }
+  useEffect(() => {
+    createUser();
+  }, []);
+
+  useEffect(() => {
+    updateToDoList();
+  }, []);
+
+  useEffect(() => {
+    deleteToDoList();
+  }, []);
 
   return (
     <div className="text-left w-50 mx-auto mt-5">
