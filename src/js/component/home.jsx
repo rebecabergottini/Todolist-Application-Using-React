@@ -25,7 +25,7 @@ const Home = () => {
 
   function createUser() {
     fetch('https://assets.breatheco.de/apis/fake/todos/user/rebecabergo', {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify([]),
       headers: {
         "Content-Type": "application/json"
@@ -38,17 +38,20 @@ const Home = () => {
   }
 
   function updateToDoList() {
-      fetch('https://assets.breatheco.de/apis/fake/todos/user/rebecabergo', {
-        method: 'PUT',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify([])
-      })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch(err => console.log(err));
-    }
+    fetch('https://assets.breatheco.de/apis/fake/todos/user/rebecabergo', {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body:  JSON.stringify([
+        { "label": "Datos", "done": false }
+      ])
+    })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch(err => console.log(err));
+  }
+
 
   function deleteToDoList() {
     fetch('https://assets.breatheco.de/apis/fake/todos/user/rebecabergo', {
